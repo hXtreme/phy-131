@@ -1,0 +1,66 @@
+#! /bin/sh
+
+## Script to mount Sakai's Webdav server.
+
+MOUNT_ROOT="/home/hpar/Documents/Sum20/phy-1/remote"
+
+mount_labs() {
+	LABS="$MOUNT_ROOT/labs"
+	LABS_DBOX="$MOUNT_ROOT/labs_dbox"
+
+	mount "$LABS"
+	mount "$LABS_DBOX"
+}
+
+umount_labs() {
+	LABS="$MOUNT_ROOT/labs"
+	LABS_DBOX="$MOUNT_ROOT/labs_dbox"
+
+	umount "$LABS"
+	umount "$LABS_DBOX"
+}
+
+mount_lecs() {
+	LECS="$MOUNT_ROOT/lecs"
+	mount "$LECS"
+}
+
+umount_lecs() {
+	LECS="$MOUNT_ROOT/lecs"
+	umount "$LECS"
+}
+
+mount_all() {
+	mount_labs
+	mount_lecs
+}
+
+umount_all() {
+	umount_labs
+	umount_lecs
+}
+
+case "$1" in
+	-h) 
+		echo "Usage: 	mount_dav [ all | labs | lecs | -h ]" 
+		echo "	mount_dav -u [ all | labs | lecs ]";;
+	all)
+		mount_all ;;
+	labs)
+		mount_labs ;;
+	lecs)
+		mount_lecs ;;
+	-u)
+		case "$2" in
+			all)
+				umount_all ;;
+			labs)
+				umount_labs ;;
+			lecs)
+				umount_lecs ;;
+		esac ;;
+	*)
+		echo "Usage: 	mount_dav [ all | labs | lecs | -h ]"
+		echo "	mount_dav -u [ all | labs | lecs ]" ;;
+
+esac

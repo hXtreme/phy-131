@@ -8,26 +8,26 @@ mount_labs() {
 	LABS="$MOUNT_ROOT/labs"
 	LABS_DBOX="$MOUNT_ROOT/labs_dbox"
 
-	mount "$LABS"
-	mount "$LABS_DBOX"
+	timeout 30 mount "$LABS"
+	timeout 30 mount "$LABS_DBOX"
 }
 
 umount_labs() {
 	LABS="$MOUNT_ROOT/labs"
 	LABS_DBOX="$MOUNT_ROOT/labs_dbox"
 
-	umount "$LABS"
-	umount "$LABS_DBOX"
+	timeout 30 umount "$LABS"
+	timeout 30 umount "$LABS_DBOX"
 }
 
 mount_lecs() {
 	LECS="$MOUNT_ROOT/lecs"
-	mount "$LECS"
+	timeout 30 mount "$LECS"
 }
 
 umount_lecs() {
 	LECS="$MOUNT_ROOT/lecs"
-	umount "$LECS"
+	timeout 30 umount "$LECS"
 }
 
 mount_all() {
